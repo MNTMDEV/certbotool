@@ -1,0 +1,7 @@
+{
+    "script": "certbotool-aliyun",
+    "params": {
+        "key_id": "",
+        "key_secret": ""
+    }
+}

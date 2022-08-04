@@ -1,0 +1,6 @@
+{
+    "script":"certbotool-dnspod",
+    "params":{
+        "key":""
+    }
+}

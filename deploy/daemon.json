@@ -1,0 +1,4 @@
+{
+    "log_directory":"/var/log/certbotool",
+    "post_renew": "echo Success."
+}
