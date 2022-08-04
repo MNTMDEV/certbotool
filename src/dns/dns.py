@@ -1,8 +1,8 @@
 from abc import abstractmethod
 import argparse
-from dataclasses import dataclass
 import os
 import sys
+import time
 from core.executable import Executable
 from core.userconf import UserConfig
 
@@ -91,5 +91,6 @@ class DnsExecutable(Executable):
         }
         if not self._args.clean:
             self.auth(data)
+            time.sleep(30)
         else:
             self.clean(data)
