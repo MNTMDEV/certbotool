@@ -29,9 +29,9 @@ cert选项：新增域名时使用下述命令，只需提供配置名称和新�
 certbotool cert [-h] [-c CONFIG] [-d DOMAIN]
 ```
 
-## certbotool-plugins
+## certbotool自带插件
 
-该包提供主流的DNS解析插件，现已支持的类型有：
+提供主流的DNS解析插件，现已支持的类型有：
 * DNSPOD(腾讯云解析)
 * Aliyun(阿里云解析)
 
@@ -45,9 +45,10 @@ APIKEY的配置 https://console.dnspod.cn/account/token/token
 
 ```
 {
-    "script":"certbotool-dnspod",
-    "params":{
-        "key":"API_ID,API_TOKEN"
+    "module": "certbotool.dns.dnspod",
+    "class": "Dnspod",
+    "params": {
+        "key": "API_ID,API_TOKEN"
     }
 }
 ```
@@ -58,7 +59,8 @@ certbotool-aliyun:
 
 ```
 {
-    "script": "certbotool-aliyun",
+    "module": "certbotool.dns.aliyun",
+    "class": "Aliyun",
     "params": {
         "key_id": "阿里云api的KEY_ID",
         "key_secret": "阿里云api的KEY_SECRET"
@@ -68,7 +70,7 @@ certbotool-aliyun:
 
 ## certbotool-crond
 
-该包提供定时自动续期的daemon服务，参数配置文件为/etc/certbotool/daemon.json
+提供定时自动续期的daemon服务，参数配置文件为/etc/certbotool/daemon.json
 
 ```
 {
