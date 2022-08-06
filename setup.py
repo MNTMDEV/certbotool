@@ -3,15 +3,6 @@ from setuptools import setup, find_packages
 setup(
     name="certbotool",
     version="1.0.0",
-    keywords=[],
-    description="certbot toolkit",
-    long_description="certbot toolkit",
-    license="GPL Licence",
-    python_requires='>=3.6',
-
-    url="https://www.mntmdev.com",
-    author="mntmdev",
-    author_email="admin@mntmdev.com",
 
     packages=find_packages(),
     include_package_data=True,
@@ -19,9 +10,9 @@ setup(
     install_requires=[
         'aliyun_python_sdk_alidns',
         'aliyun_python_sdk_core',
-        'APScheduler',
+        'apscheduler',
         'requests',
-        'setuptools'
+        'setuptools',
     ],
     
     scripts=[],
