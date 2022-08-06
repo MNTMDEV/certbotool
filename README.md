@@ -7,20 +7,12 @@
 * 适用于维护泛域名证书
 * 可以单机下维护来自多种dns解析平台、多个账号的域名。
 
-## RPM仓库
-
-本项目使用rpmbuild构建安装包，不需要复杂的环境配置，开箱即用。
-
-配置仓库可直接下载配置好的repo文件到/etc/yum.repos.d
-
-```
-wget https://rpm.mntmdev.com/repo/mntmdev.repo -O /etc/yum.repos.d/mntmdev.repo
-```
+## 安装
 
 安装项目的所有组件
 
 ```
-yum install certbotool* -y
+python3 setup.py install
 ```
 
 ## certbotool

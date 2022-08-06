@@ -1,6 +1,7 @@
 {
-    "script":"certbotool-dnspod",
-    "params":{
+    "module": "certbotool.dns.dnspod",
+    "class": "Dnspod",
+    "params": {
         "key":""
     }
 }

@@ -1,13 +1,9 @@
 from abc import abstractmethod
-import argparse
 import os
 import sys
 import time
-from core.executable import Executable
-from core.userconf import UserConfig
 
-
-class DnsExecutable(Executable):
+class DnsExecutable():
     _acme_prefix = '_acme-challenge'
 
     def print_error(self, content):
@@ -32,14 +28,17 @@ class DnsExecutable(Executable):
     def get_master_domain(self, params, subdomain):
         pass
 
-    def parse(self):
-        parser = argparse.ArgumentParser(
-            description=self.description())
-        parser.add_argument(
-            '-c', '--config', help='Certbot dns hook configuration file.')
-        parser.add_argument(
-            '-d', '--clean', action='store_true', help='Run certbot dns clean hook.')
-        self._args = parser.parse_args()
+    # def parse(self):
+    #     parser = argparse.ArgumentParser(
+    #         description=self.description())
+    #     parser.add_argument(
+    #         '-c', '--config', help='Certbot dns hook configuration file.')
+    #     parser.add_argument(
+    #         '-d', '--clean', action='store_true', help='Run certbot dns clean hook.')
+    #     self._args = parser.parse_args()
+
+    def __init__(self) -> None:
+        pass
 
     def error_and_exit(self, str):
         print(str)
@@ -59,12 +58,12 @@ class DnsExecutable(Executable):
         else:
             return self._acme_prefix+'.'+domain
 
-    def execute(self):
+    def execute(self,params,clean):
         subdomain = os.environ.get('CERTBOT_DOMAIN')
         verify = os.environ.get('CERTBOT_VALIDATION')
-        config = self._args.config
-        if config == None:
-            self.error_and_exit("Configuration file path is required.")
+        # config = self._args.config
+        # if config == None:
+        #     self.error_and_exit("Configuration file path is required.")
         if subdomain == None:
             self.error_and_exit(
                 "Can not acquire $CERTBOT_DOMAIN envirionment variable.")
@@ -72,8 +71,8 @@ class DnsExecutable(Executable):
             self.error_and_exit(
                 "Can not acquire $CERTBOT_VALIDATION envirionment variable.")
 
-        json_data = UserConfig.parse(config)
-        params = json_data.get('params')
+        # json_data = UserConfig.parse(config)
+        # params = json_data.get('params')
         if params == None:
             self.error_and_exit(
                 "Configuration file does not declare parameters.")
@@ -89,7 +88,7 @@ class DnsExecutable(Executable):
             "subdomain": prefix,
             "verify": verify
         }
-        if not self._args.clean:
+        if not clean:
             self.auth(data)
             time.sleep(30)
         else:

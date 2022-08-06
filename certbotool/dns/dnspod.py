@@ -1,6 +1,6 @@
 import json
-from core.rest import RestRequest
-from dns.dns import DnsExecutable
+from certbotool.core.rest import RestRequest
+from certbotool.dns.dns import DnsExecutable
 
 
 class Dnspod(DnsExecutable):

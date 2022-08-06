@@ -1,8 +1,10 @@
 import argparse
+import importlib
 import os
 import sys
-from core.executable import Executable
-from core.userconf import UserConfig
+from certbotool.core.executable import Executable
+from certbotool.core.userconf import UserConfig
+from certbotool.dns.dns import DnsExecutable
 
 
 class CliExecutable(Executable):
@@ -45,10 +47,14 @@ class CliExecutable(Executable):
 
     def dns(self):
         self.read_config(self._args.config)
-        clean = ' -d' if self._args.clean else ''
-        cmd = '%s -c "%s"%s' % (self._config['script'],
-                                self._config_path, clean)
-        os.system(cmd)
+        module_name = self._config['module']
+        clz_name = self._config['class']
+        m = importlib.import_module(module_name)
+        clz = getattr(m, clz_name)
+        params = self._config['params']
+        clean = self._args.clean
+        instance:DnsExecutable = clz()
+        instance.execute(params, clean)
 
     def cert(self):
         self.read_config(self._args.config)
@@ -56,7 +62,7 @@ class CliExecutable(Executable):
         if domain == None:
             print("Domain name is required.")
             sys.exit(1)
-        acquire_hook = 'certbotool dns -c %s'%self._args.config
+        acquire_hook = 'certbotool dns -c %s' % self._args.config
         clean_hook = '%s -d' % acquire_hook
         cmd = '%s -d %s %s --manual-auth-hook "%s" --manual-cleanup-hook "%s"' % (
             self._cert_acquire_prefix, domain, self._acme_server_opt, acquire_hook, clean_hook)

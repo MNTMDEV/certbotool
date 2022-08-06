@@ -1,5 +1,5 @@
 import json
-from dns.dns import DnsExecutable
+from certbotool.dns.dns import DnsExecutable
 from aliyunsdkcore.client import AcsClient
 from aliyunsdkalidns.request.v20150109.DescribeDomainsRequest import DescribeDomainsRequest
 from aliyunsdkalidns.request.v20150109.DescribeSubDomainRecordsRequest import DescribeSubDomainRecordsRequest

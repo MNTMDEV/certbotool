@@ -1,1 +1,0 @@
-rpmbuild构建RPM包的路径

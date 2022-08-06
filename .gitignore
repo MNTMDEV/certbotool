@@ -1,4 +1,5 @@
 .vscode/
 **/__pycache__
-script/output/rpmbuild/*
-!script/output/rpmbuild/README.md
+/certbotool.egg-info
+/build
+/dist

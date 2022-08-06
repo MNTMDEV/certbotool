@@ -1,10 +1,10 @@
 import argparse
 import os
 
-from core.executable import Executable
+from certbotool.core.executable import Executable
 from apscheduler.schedulers.blocking import BlockingScheduler
 
-from core.userconf import UserConfig
+from certbotool.core.userconf import UserConfig
 
 # Renew command does not require hook script
 CERTBOT_RENEW_CMD = "certbot renew"
