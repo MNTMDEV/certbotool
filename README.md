@@ -9,9 +9,17 @@
 
 ## 安装
 
-安装项目的所有组件
+使用pip安装软件包
 
 ```
+pip3 install certbotool
+```
+
+通过源码安装项目主干分支
+
+```
+git clone https://github.com/MNTMDEV/certbotool.git
+cd certbotool
 python3 setup.py install
 ```
 
