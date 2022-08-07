@@ -3,7 +3,9 @@ from setuptools import setup, find_packages
 setup(
     name="certbotool",
     version="1.0.0",
-
+    license='GPL',
+    description='certbot dns toolkit',
+    long_description='certbot dns toolkit',
     packages=find_packages(),
     include_package_data=True,
     platforms="any",
